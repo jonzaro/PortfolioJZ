@@ -15,7 +15,7 @@
 ### ![Portfoio SC](https://user-images.githubusercontent.com/66086245/236332175-9be9c329-36a1-4b9c-91ad-b70f9c2bdc5c.jpeg)
 
 
-### ✨ [Live Deployed Site](https://jonzaro.cyclic.app)
+### ✨ [Live Deployed Site](https://jonzaro.com)
 
 ## Author
 
