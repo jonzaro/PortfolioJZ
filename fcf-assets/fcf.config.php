@@ -1,15 +1,5 @@
 <?php
-// ************************************
-// This file is part of a package from:
-// www.majesticform.com
 
-// Free Version
-// 2 January 2022
-
-// You are free to use an edit for 
-// your own use. But cannot resell
-// or repackage in any way.
-// ************************************
 
 
 // ***********
@@ -62,7 +52,7 @@ define('EMAIL_OUT_FROM_NAME', '');
 // *************
 // EMAIL MESSAGE
 // *************
-define('EMAIL_TO', '');
+define('EMAIL_TO', 'writetojonzaro@gmail.com');
 define('EMAIL_TO_NAME', '');
 
 define('EMAIL_TO_CC', '');
@@ -71,7 +61,7 @@ define('EMAIL_TO_CC_NAME', '');
 define('EMAIL_TO_BCC', '');
 define('EMAIL_TO_BCC_NAME', '');
 
-define('EMAIL_FROM', '');
+define('EMAIL_FROM', 'writetojonzaro@gmail.com');
 define('EMAIL_FROM_NAME', '');
 
 define('EMAIL_REPLY_TO', 'FIELD:Email');
