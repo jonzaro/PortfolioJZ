@@ -1,26 +1,25 @@
 {
-  "name": "ortfoliojz",
-  "version": "1.0.0",
-  "description": "<h1 align=\"center\">Welcome to Jon Zaro's Portfolio 👋</h1> <p> <img src=\"https://img.shields.io/static/v1?label=Tested&message=PASS&color=green\" />   <img alt=\"Version\" src=\"https://img.shields.io/badge/deployed-cyclic.sh-red.svg?cacheSeconds=2592000\" />     <img alt=\"Version\" src=\"https://img.shields.io/badge/version-(1.0.01)-blue.svg?cacheSeconds=2592000\" />",
-  "dependencies": {
-    "react": "^18.2.0",
+"name": "portfoliojz",
+"version": "1.0.0",
+"description": "<h1 align=\"center\">Welcome to Jon Zaro's Portfolio 👋</h1> <p> <img src=\"https://img.shields.io/static/v1?label=Tested&message=PASS&color=green\" />   <img alt=\"Version\" src=\"https://img.shields.io/badge/deployed-cyclic.sh-red.svg?cacheSeconds=2592000\" />     <img alt=\"Version\" src=\"https://img.shields.io/badge/version-(1.0.01)-blue.svg?cacheSeconds=2592000\" />",
+"dependencies": {
     "react-scripts": "5.0.1"
-  },
-  "scripts": {
-    "start": "node index.html",
+},
+"scripts": {
+    "start": "node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "repository": {
-    "type": "git",
+},
+"repository": {
+"type": "git",
     "url": "git+https://github.com/jonzaro/PortfolioJZ.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
+},
+"author": "",
+"license": "ISC",
+"bugs": {
     "url": "https://github.com/jonzaro/PortfolioJZ/issues"
-  },
-  "homepage": "https://github.com/jonzaro/PortfolioJZ#readme",
-  "main": "index.js"
+},
+"homepage": "https://github.com/jonzaro/PortfolioJZ#readme",
+"main": "index.js"
 }
