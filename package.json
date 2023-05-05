@@ -2,7 +2,7 @@
 "name": "portfoliojz",
 "version": "1.0.0",
 "description": "<h1 align=\"center\">Welcome to Jon Zaro's Portfolio 👋</h1> <p> <img src=\"https://img.shields.io/static/v1?label=Tested&message=PASS&color=green\" />   <img alt=\"Version\" src=\"https://img.shields.io/badge/deployed-cyclic.sh-red.svg?cacheSeconds=2592000\" />     <img alt=\"Version\" src=\"https://img.shields.io/badge/version-(1.0.01)-blue.svg?cacheSeconds=2592000\" />",
-"dependencies": {
+"dev-dependencies": {
     "react-scripts": "5.0.1"
 },
 "scripts": {
