@@ -7,7 +7,7 @@
 },
 "scripts": {
     "start": "node index.js",
-    "build": "react-scripts build",
+    "build": "node run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
 },
