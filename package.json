@@ -2,7 +2,7 @@
   "name": "portfoliojz",
   "version": "1.0.0",
   "description": "some desc",
-  "main": "/public/index.html",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
 
