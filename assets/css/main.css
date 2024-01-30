@@ -152,6 +152,25 @@ img:link {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.flex-container {
+  display: flex;
+}
+
+.flex-left {
+  padding: 20px;
+}
+
+.aiJon {
+  border-radius: 30px;
+  position: relative;
+  top: 25%;
+}
+
+.flex-right {
+  flex: 1;
+  padding: 10px;
+}
+
 .tabs {
   max-width: 1200px;
   padding: 10px;
