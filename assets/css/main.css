@@ -106,7 +106,118 @@ section {
 a {
   text-decoration: none;
 }
-/* start of codepen css */
+/* start of GPT  css */
+
+.projects-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.skill-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+}
+
+.skill-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.skill-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-icons a {
+  display: inline-block;
+}
+
+/* Project Card */
+.project-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.hopebot-card img {
+  width: 50%;
+  height: auto;
+  margin-top: 10px;
+  border-bottom: 4px solid #007bff;
+}
+
+/* Image */
+.project-card img {
+  width: 75%;
+  height: auto;
+  margin-top: 10px;
+  border-bottom: 4px solid #007bff;
+}
+
+/* Content */
+.project-content {
+  padding: 20px;
+}
+
+h3 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: #3967bd;
+  color: white;
+}
+
+.btn.outline {
+  background: none;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
 
 /* Box Tab Code */
 .stillImg {
