@@ -1512,4 +1512,44 @@ a:hover {
   .stillImg {
     border: 2px solid black;
   }
+
+  /* Project grid and cards responsive styles */
+  .projects-section {
+    padding: 0 10px;
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .project-card img {
+    width: 90%;
+  }
+
+  .project-content {
+    padding: 15px 10px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 80%;
+    text-align: center;
+    padding: 8px 0;
+  }
 }
