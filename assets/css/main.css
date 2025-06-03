@@ -1553,3 +1553,59 @@ a:hover {
     padding: 8px 0;
   }
 }
+
+/* Responsive tab styling for medium and small screens */
+
+@media screen and (max-width: 1280px) {
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tabs label {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    margin: 5px 3px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tabs label {
+    display: inline-block;
+    width: auto;
+    padding: 8px 16px;
+    margin: 3px;
+    text-align: center;
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tabs label {
+    display: inline-block;
+    width: auto;
+    padding: 6px 12px;
+    margin: 2px;
+    text-align: center;
+    font-size: 0.8em;
+  }
+}
