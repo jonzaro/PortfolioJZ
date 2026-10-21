@@ -20,7 +20,7 @@ npm run build    # static output in dist/
 |---|---|
 | `DESIGN.md` | The design system (Stripe-inspired, from VoltAgent/awesome-design-md) plus this site's adaptations. Read it before changing UI. |
 | `src/content/work/*.md` | One file per case study. Frontmatter holds the card copy, stats and code panel; the body is the write-up. The schema lives in `src/content.config.ts`. |
-| `src/pages/index.astro` | Homepage: hero, proof strip, case studies, services, principles, about, side projects, CTA. |
+| `src/pages/index.astro` | Homepage: hero, proof strip, experience and skills, AI and automation, case studies, principles, side projects, contact. |
 | `src/pages/work/[slug].astro` | Case study template. |
 | `src/components/` | Mountain hero, ship log, code panel, case card, CTA band, nav, footer. |
 | `src/site.ts` | Email, Calendly, GitHub and LinkedIn links. |

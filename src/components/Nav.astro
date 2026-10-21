@@ -1,9 +1,9 @@
 ---
 import { site } from '../site';
 const links = [
-  { href: '/#work', label: 'Work' },
-  { href: '/#services', label: 'Services' },
-  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#ai', label: 'AI' },
+  { href: '/#work', label: 'Case studies' },
 ];
 ---
 
@@ -23,8 +23,8 @@ const links = [
         }
       </ul>
     </nav>
-    <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-primary nav-cta">
-      Book a call <span class="arrow" aria-hidden="true">→</span>
+    <a href={`mailto:${site.email}`} class="btn btn-primary nav-cta">
+      Email me <span class="arrow" aria-hidden="true">→</span>
     </a>
   </div>
 </header>
