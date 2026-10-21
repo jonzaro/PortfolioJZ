@@ -1,0 +1,93 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  entry: CollectionEntry<'work'>;
+}
+const { entry } = Astro.props;
+const { title, card, period, stats, stack, status } = entry.data;
+const lead = stats[0];
+---
+
+<a href={`/work/${entry.id}/`} class="case">
+  <div class="case-top">
+    <span class="caption tnum">{period}</span>
+    {status === 'in-progress' && <span class="tag">In progress</span>}
+  </div>
+  <h3 class="heading-lg">{title}</h3>
+  <p class="case-body">{card}</p>
+  {
+    lead && (
+      <div class="case-stat">
+        <span class="stat-value tnum">{lead.value}</span>
+        <span class="caption">{lead.label}</span>
+      </div>
+    )
+  }
+  <div class="case-foot">
+    <span class="caption">{stack.slice(0, 3).join(' · ')}</span>
+    <span class="read">Read case study <span class="arrow" aria-hidden="true">→</span></span>
+  </div>
+</a>
+
+<style>
+  .case {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+    padding: 28px;
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    color: var(--ink);
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .case:hover {
+    color: var(--ink);
+    border-color: #d3dbe6;
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+  .case-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .case-body {
+    color: var(--ink-secondary);
+    font-size: 15px;
+  }
+  .case-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: auto;
+  }
+  .stat-value {
+    font-size: 26px;
+    letter-spacing: -0.6px;
+    color: var(--brand-dark-900);
+  }
+  .case-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .read {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .case:hover .arrow {
+    display: inline-block;
+    transform: translateX(2px);
+  }
+</style>

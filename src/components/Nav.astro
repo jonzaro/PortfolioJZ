@@ -1,0 +1,96 @@
+---
+import { site } from '../site';
+const links = [
+  { href: '/#work', label: 'Work' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#about', label: 'About' },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a href="/" class="wordmark" aria-label="Jon Zaro, home">Jon Zaro</a>
+    <nav aria-label="Primary">
+      <ul class="links">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      Book a call <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const update = () => nav?.classList.toggle('is-solid', window.scrollY > 24);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    color: var(--on-primary);
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
+  }
+  .nav.is-solid {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(1.4) blur(12px);
+    box-shadow: 0 1px 0 var(--hairline);
+    color: var(--ink);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 68px;
+  }
+  .wordmark {
+    color: inherit;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+  }
+  .links {
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .links a {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.9;
+  }
+  .links a:hover {
+    opacity: 1;
+  }
+  .nav-cta {
+    margin-left: auto;
+    font-size: 15px;
+  }
+  @media (max-width: 767px) {
+    .links {
+      display: none;
+    }
+    .nav-inner {
+      height: 60px;
+    }
+  }
+</style>

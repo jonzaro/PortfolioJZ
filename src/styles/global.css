@@ -1,0 +1,325 @@
+/*
+ * Tokens follow DESIGN.md (Stripe-inspired system, adapted for the portfolio).
+ * The animated mountain band takes the place of Stripe's gradient mesh.
+ */
+@import '@fontsource-variable/inter';
+
+:root {
+  /* Brand & accent */
+  --primary: #533afd;
+  --primary-deep: #4434d4;
+  --primary-press: #2e2b8c;
+  --primary-soft: #665efd;
+  --primary-subdued: #b9b9f9;
+  --brand-dark-900: #1c1e54;
+  --ruby: #ea2261;
+  --sky: #348cb2;
+
+  /* Text */
+  --ink: #0d253d;
+  --ink-secondary: #273951;
+  --ink-mute: #64748d;
+  --on-primary: #ffffff;
+
+  /* Surface */
+  --canvas: #ffffff;
+  --canvas-soft: #f6f9fc;
+  --canvas-cream: #f5e9d4;
+  --hairline: #e3e8ee;
+  --hairline-input: #a8c3de;
+
+  /* Shape */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-pill: 9999px;
+
+  /* Elevation */
+  --shadow-1: rgba(0, 55, 112, 0.08) 0 1px 3px;
+  --shadow-2: rgba(0, 55, 112, 0.08) 0 8px 24px, rgba(0, 55, 112, 0.04) 0 2px 6px;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 24px;
+  --section-y: 96px;
+
+  --font: 'Inter Variable', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: var(--section-y) 0;
+}
+
+.section--soft {
+  background: var(--canvas-soft);
+}
+
+/* Type scale */
+.display-xxl {
+  font-size: 56px;
+  line-height: 1.03;
+  letter-spacing: -1.4px;
+}
+.display-xl {
+  font-size: 48px;
+  line-height: 1.15;
+  letter-spacing: -0.96px;
+}
+.display-lg {
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.64px;
+}
+.display-md {
+  font-size: 26px;
+  line-height: 1.12;
+  letter-spacing: -0.26px;
+}
+.heading-lg {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.22px;
+}
+.heading-md {
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+.body-lg {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+.caption {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  color: var(--ink-mute);
+}
+.tnum {
+  font-feature-settings: 'tnum', 'cv11';
+  letter-spacing: -0.42px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.section-head p {
+  margin-top: 16px;
+}
+
+/* Buttons: pill geometry everywhere */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn-primary:hover {
+  background: var(--primary-deep);
+  color: var(--on-primary);
+}
+.btn-primary:active {
+  background: var(--primary-press);
+}
+
+.btn-secondary {
+  background: var(--canvas);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-secondary:hover {
+  background: var(--canvas-soft);
+}
+
+.btn-ghost-light {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--on-primary);
+  border-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.24);
+  color: var(--on-primary);
+}
+
+.btn-on-dark {
+  background: var(--canvas);
+  color: var(--brand-dark-900);
+}
+.btn-on-dark:hover {
+  background: var(--canvas-soft);
+  color: var(--brand-dark-900);
+}
+
+.btn .arrow {
+  transition: transform 0.15s ease;
+}
+.btn:hover .arrow {
+  transform: translateX(2px);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  background: #ecebfe;
+  color: var(--primary-deep);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Cards */
+.card {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 32px;
+}
+
+.card--cream {
+  background: var(--canvas-cream);
+  border-color: transparent;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+    --section-y: 64px;
+  }
+  .display-xxl {
+    font-size: 38px;
+    letter-spacing: -0.95px;
+  }
+  .display-xl {
+    font-size: 32px;
+    letter-spacing: -0.64px;
+  }
+  .display-lg {
+    font-size: 26px;
+    letter-spacing: -0.4px;
+  }
+  .card {
+    padding: 24px;
+  }
+  .btn {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

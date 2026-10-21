@@ -1,0 +1,515 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import MountainHero from '../components/MountainHero.astro';
+import ShipLog from '../components/ShipLog.astro';
+import CaseCard from '../components/CaseCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../site';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+
+const proof = [
+  { value: '−33 pts', label: 'Overstatement corrected in the team’s headline activation metric' },
+  { value: '64 → 0', label: 'Duplicate subscription pairs, every repair reversible' },
+  { value: '< 5 min', label: 'Production rollback, built after a launch-day crash' },
+  { value: '17 / 17', label: 'Checkout paths verified with real money at cutover' },
+];
+
+const services = [
+  {
+    title: 'Mobile apps that ship',
+    body: 'Expo and React Native for iOS and Android: EAS builds, over-the-air updates that can’t brick the app, and App Store and Play releases.',
+    tags: ['Expo', 'React Native', 'EAS', 'Maestro'],
+  },
+  {
+    title: 'Payments & subscriptions',
+    body: 'Stripe and RevenueCat wired up so web and app purchases agree: signed webhooks, reconciliation, checkout and cancellation flows.',
+    tags: ['Stripe', 'RevenueCat', 'Webhooks', 'Postgres'],
+  },
+  {
+    title: 'Analytics you can steer by',
+    body: 'Event tracking that fires once per real thing, identity that doesn’t merge strangers, and funnels checked against billing data.',
+    tags: ['PostHog', 'Feature flags', 'A/B tests', 'SQL'],
+  },
+  {
+    title: 'Release safety',
+    body: 'CI gates, one-click rollback, migrations with tested down scripts, and deploy checks that prove what is actually running.',
+    tags: ['GitHub Actions', 'Fly.io', 'Vercel', 'Sentry'],
+  },
+];
+
+const principles = [
+  {
+    title: 'Measure before I build',
+    body: 'Most expensive bugs I’ve fixed were wrong numbers, not crashes. I reconcile against a second source before I trust a metric.',
+  },
+  {
+    title: 'Every repair is reversible',
+    body: 'Production data changes record their own undo. Releases have a rollback that takes minutes, not a rebuild.',
+  },
+  {
+    title: 'Merged isn’t shipped',
+    body: 'A fix counts when the deployed revision includes it and the data shows the problem stopped, not when the PR merges.',
+  },
+  {
+    title: 'AI-accelerated, human-verified',
+    body: 'I build with Claude Code every day, and every change still ships with tests that fail without the fix.',
+  },
+];
+
+const side = [
+  {
+    title: 'Developer Dashboard',
+    body: 'A focused activity dashboard that pulls actionable work into one view. React, TypeScript, Vite and Tailwind.',
+    image: '/images/developerDashboard.png',
+    links: [
+      { label: 'Live demo', href: 'https://harmonious-dragon-09a47b.netlify.app/' },
+      { label: 'GitHub', href: 'https://github.com/jonzaro/activityDashboard' },
+    ],
+  },
+  {
+    title: 'PrizePortal',
+    body: 'A mock iOS loyalty app with authentication, point tracking and gift redemption. Expo and React Native.',
+    image: '/images/PrizePortal.jpeg',
+    links: [
+      { label: 'Demo video', href: 'https://drive.google.com/file/d/1EmDY30bv980KnbW-UL42OEDgUyXZ4hHc/view?usp=sharing' },
+      { label: 'GitHub', href: 'https://github.com/jonzaro/prize-portal-expo-ios-app' },
+    ],
+  },
+  {
+    title: 'HopeBot',
+    body: 'A custom-trained GPT recovery coach with a no-code landing page and a Stripe paywall.',
+    image: '/images/TAG_Hopebot.jpeg',
+    links: [{ label: 'Chat with HopeBot', href: 'http://pmfm.ai/addictionguide' }],
+  },
+];
+---
+
+<Base>
+  <MountainHero>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Lead developer · Burn by Cara Loren</span>
+        <h1 class="display-xxl">Subscription apps that ship, with numbers you can trust.</h1>
+        <p class="hero-sub">
+          I’m Jon Zaro, a full-stack and mobile engineer. I lead engineering on Burn: the iOS and Android app, the API,
+          payments, analytics and the release pipeline. I take production systems that are quietly wrong and make
+          them measurable, reversible and safe to ship.
+        </p>
+        <div class="hero-actions">
+          <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-primary">
+            Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#work" class="btn btn-ghost-light">Read the case studies</a>
+        </div>
+      </div>
+      <div class="hero-log">
+        <ShipLog />
+      </div>
+    </div>
+  </MountainHero>
+
+  <section class="proof" aria-label="Results">
+    <div class="container">
+      <ul class="proof-grid">
+        {
+          proof.map((p) => (
+            <li>
+              <span class="proof-value tnum">{p.value}</span>
+              <span class="caption">{p.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Case studies</span>
+        <h2 class="display-xl">Seven problems from inside one production app.</h2>
+        <p class="body-lg">
+          Burn is a subscription fitness app on iOS, Android and the web. These are the problems I was trusted with
+          there, from data repair to release safety, and what changed because of them.
+        </p>
+      </div>
+      <div class="case-grid">
+        {work.map((entry) => <CaseCard entry={entry} />)}
+        <a href={site.calendly} target="_blank" rel="noopener" class="case-cta">
+          <span class="heading-lg">Your problem could be next.</span>
+          <span class="caption">A short call, a straight answer on whether I can help.</span>
+          <span class="btn btn-primary">Book a call <span class="arrow" aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What I can take off your plate</span>
+        <h2 class="display-xl">The parts of an app that touch money.</h2>
+      </div>
+      <div class="service-grid">
+        {
+          services.map((s) => (
+            <article class="card">
+              <h3 class="heading-lg">{s.title}</h3>
+              <p class="service-body">{s.body}</p>
+              <div class="tag-row">
+                {s.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card card--cream principles">
+        <div class="principles-head">
+          <span class="eyebrow eyebrow--warm">How I work</span>
+          <h2 class="display-lg">Four rules I don’t break.</h2>
+        </div>
+        <ol class="principle-list">
+          {
+            principles.map((p, i) => (
+              <li>
+                <span class="principle-n tnum">0{i + 1}</span>
+                <div>
+                  <h3 class="heading-md">{p.title}</h3>
+                  <p>{p.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="about">
+    <div class="container about">
+      <img src="/images/jon.jpg" alt="Jon Zaro" width="360" height="360" class="about-photo" loading="lazy" />
+      <div class="about-copy">
+        <span class="eyebrow">About</span>
+        <h2 class="display-lg">From intern to lead developer in under a year.</h2>
+        <p class="body-lg">
+          I finished V School’s full-stack JavaScript program in 2023 and joined Smash Creative as an intern that
+          August. By the following summer I was leading development on Burn by Cara Loren, and today I own its
+          architecture and release pipeline.
+        </p>
+        <p class="body-lg">
+          I also volunteer as a developer on a protocols app for the Lehi Fire Department, giving firefighters fast
+          access to procedures and pediatric dosing. Off the keyboard I’m a dad of three boys, a forager and a hiker,
+          which is where the mountains came from.
+        </p>
+        <div class="about-links">
+          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn →</a>
+          <a href={site.github} target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Side projects</span>
+        <h2 class="display-lg">Things I built to learn.</h2>
+      </div>
+      <div class="side-grid">
+        {
+          side.map((p) => (
+            <article class="side">
+              <div class="side-img">
+                <img src={p.image} alt="" loading="lazy" />
+              </div>
+              <div class="side-body">
+                <h3 class="heading-md">{p.title}</h3>
+                <p>{p.body}</p>
+                <div class="side-links">
+                  {p.links.map((l) => (
+                    <a href={l.href} target="_blank" rel="noopener">
+                      {l.label} →
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .hero-copy h1 {
+    color: var(--on-primary);
+    text-shadow: 0 1px 24px rgba(8, 40, 70, 0.25);
+  }
+  .hero-sub {
+    margin-top: 22px;
+    max-width: 560px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .hero-grid > * {
+    min-width: 0;
+  }
+  .hero-log {
+    padding-top: 8px;
+  }
+
+  .proof {
+    padding: 48px 0 8px;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .proof-grid li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 16px;
+    border-left: 1px solid var(--hairline);
+  }
+  .proof-value {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+    color: var(--brand-dark-900);
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .case-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 28px;
+    border-radius: var(--r-lg);
+    border: 1px dashed var(--primary-subdued);
+    background: linear-gradient(135deg, #f4f3ff 0%, var(--canvas-soft) 100%);
+    color: var(--ink);
+  }
+  .case-cta:hover {
+    color: var(--ink);
+  }
+  .case-cta .btn {
+    margin-top: 8px;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .service-grid .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .service-body {
+    color: var(--ink-secondary);
+    flex: 1;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    padding: 56px;
+  }
+  .eyebrow--warm {
+    color: #9b6829;
+  }
+  .principle-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .principle-list li {
+    display: flex;
+    gap: 16px;
+  }
+  .principle-n {
+    color: #9b6829;
+    font-size: 14px;
+    padding-top: 3px;
+  }
+  .principle-list p {
+    margin-top: 6px;
+    color: var(--ink-secondary);
+    font-size: 15px;
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-2);
+  }
+  .about-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .about-copy .eyebrow {
+    margin-bottom: 0;
+  }
+  .about-links {
+    display: flex;
+    gap: 24px;
+    font-weight: 400;
+  }
+
+  .side-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: var(--canvas);
+  }
+  .side-img {
+    aspect-ratio: 16 / 10;
+    background: var(--canvas-soft);
+    overflow: hidden;
+  }
+  .side-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .side-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 24px 24px;
+    flex: 1;
+  }
+  .side-body p {
+    color: var(--ink-secondary);
+    font-size: 15px;
+    flex: 1;
+  }
+  .side-links {
+    display: flex;
+    gap: 18px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero-log {
+      max-width: 560px;
+    }
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .principles {
+      grid-template-columns: 1fr;
+      padding: 40px;
+    }
+    .side-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+    }
+  }
+  @media (max-width: 767px) {
+    .hero-sub {
+      font-size: 16px;
+    }
+    .hero-actions .btn {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+    .proof-grid {
+      gap: 24px 16px;
+    }
+    .proof-value {
+      font-size: 26px;
+    }
+    .case-grid,
+    .service-grid,
+    .principle-list,
+    .side-grid {
+      grid-template-columns: 1fr;
+    }
+    .principles {
+      padding: 28px 22px;
+      gap: 28px;
+    }
+    .about {
+      grid-template-columns: 1fr;
+    }
+    .about-photo {
+      max-width: 260px;
+    }
+  }
+</style>
