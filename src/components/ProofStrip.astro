@@ -1,0 +1,136 @@
+---
+// Each number answers "compared to what?" in the headline; the slug links the proof to its case study.
+const proof = [
+  {
+    topic: 'Releases',
+    value: '12 hrs → 5 min',
+    headline: 'Time to recover from a bad release',
+    detail: 'A broken update once took 12 hours to fix. Now it rolls back in minutes.',
+    slug: 'release-safety',
+  },
+  {
+    topic: 'Analytics',
+    value: '80% → 47%',
+    headline: 'The team’s key growth number, corrected',
+    detail: 'Checked against billing data, the real conversion rate was far lower than the one being used.',
+    slug: 'analytics-ground-truth',
+  },
+  {
+    topic: 'Billing data',
+    value: '90% fewer',
+    headline: 'Subscriptions stuck in a failed-payment state',
+    detail: 'Repaired live billing records in place, with an undo for every change.',
+    slug: 'subscription-data-repair',
+  },
+  {
+    topic: 'Integrations',
+    value: '700+',
+    headline: 'Stuck signup and payment tasks cleared',
+    detail: 'Replaced a frozen Zapier queue with tested webhooks in our own API.',
+    slug: 'zapier-to-webhooks',
+  },
+];
+---
+
+<section class="proof" aria-labelledby="proof-title">
+  <div class="container">
+    <p class="proof-title caption" id="proof-title">What changed at Burn</p>
+    <ul class="proof-grid">
+      {
+        proof.map((p) => (
+          <li>
+            <a href={`/work/${p.slug}/`} class="proof-card">
+              <span class="proof-topic">{p.topic}</span>
+              <span class="proof-value tnum">{p.value}</span>
+              <span class="proof-headline">{p.headline}</span>
+              <span class="proof-detail">{p.detail}</span>
+              <span class="proof-link">
+                Read the case study <span class="arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .proof {
+    padding: 48px 0 8px;
+  }
+  .proof-title {
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .proof-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    padding: 22px 22px 20px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    background: var(--canvas);
+    color: var(--ink);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .proof-card:hover {
+    color: var(--ink);
+    border-color: var(--primary-subdued);
+    box-shadow: var(--shadow-2);
+  }
+  .proof-topic {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 500;
+  }
+  .proof-value {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+    line-height: 1.1;
+    color: var(--brand-dark-900);
+  }
+  .proof-headline {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .proof-detail {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-secondary);
+  }
+  .proof-link {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--primary);
+  }
+  @media (max-width: 1023px) {
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 767px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .proof-value {
+      font-size: 28px;
+    }
+  }
+</style>

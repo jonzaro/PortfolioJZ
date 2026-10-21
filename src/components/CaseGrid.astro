@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import CaseCard from './CaseCard.astro';
+
+interface Props {
+  cta: { title: string; caption: string; label: string; href: string; external?: boolean };
+}
+
+const { cta } = Astro.props;
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const ext = cta.external ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<div class="case-grid">
+  {work.map((entry) => <CaseCard entry={entry} />)}
+  <a href={cta.href} {...ext} class="case-cta">
+    <span class="heading-lg">{cta.title}</span>
+    <span class="caption">{cta.caption}</span>
+    <span class="btn btn-primary">{cta.label} <span class="arrow" aria-hidden="true">→</span></span>
+  </a>
+</div>
+
+<style>
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .case-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 28px;
+    border-radius: var(--r-lg);
+    border: 1px dashed var(--primary-subdued);
+    background: linear-gradient(135deg, #f4f3ff 0%, var(--canvas-soft) 100%);
+    color: var(--ink);
+  }
+  .case-cta:hover {
+    color: var(--ink);
+  }
+  .case-cta .btn {
+    margin-top: 8px;
+  }
+  @media (max-width: 767px) {
+    .case-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

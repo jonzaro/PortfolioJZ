@@ -1,0 +1,93 @@
+---
+const principles = [
+  {
+    title: 'Measure before I build',
+    body: 'Most expensive bugs I’ve fixed were wrong numbers, not crashes. I reconcile against a second source before I trust a metric.',
+  },
+  {
+    title: 'Every repair is reversible',
+    body: 'Production data changes record their own undo. Releases have a rollback that takes minutes, not a rebuild.',
+  },
+  {
+    title: 'Merged isn’t shipped',
+    body: 'A fix counts when the deployed revision includes it and the data shows the problem stopped, not when the PR merges.',
+  },
+  {
+    title: 'AI-accelerated, human-verified',
+    body: 'I build with frontier models every day, and every change still ships with tests that fail without the fix.',
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <div class="card card--cream principles">
+      <div>
+        <span class="eyebrow eyebrow--warm">How I work</span>
+        <h2 class="display-lg">Four rules I don’t break.</h2>
+      </div>
+      <ol class="principle-list">
+        {
+          principles.map((p, i) => (
+            <li>
+              <span class="principle-n tnum">0{i + 1}</span>
+              <div>
+                <h3 class="heading-md">{p.title}</h3>
+                <p>{p.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .principles {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    padding: 56px;
+  }
+  .eyebrow--warm {
+    color: #9b6829;
+  }
+  .principle-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .principle-list li {
+    display: flex;
+    gap: 16px;
+  }
+  .principle-n {
+    color: #9b6829;
+    font-size: 14px;
+    padding-top: 3px;
+  }
+  .principle-list p {
+    margin-top: 6px;
+    color: var(--ink-secondary);
+    font-size: 15px;
+  }
+  @media (max-width: 1023px) {
+    .principles {
+      grid-template-columns: 1fr;
+      padding: 40px;
+    }
+  }
+  @media (max-width: 767px) {
+    .principle-list {
+      grid-template-columns: 1fr;
+    }
+    .principles {
+      padding: 28px 22px;
+      gap: 28px;
+    }
+  }
+</style>

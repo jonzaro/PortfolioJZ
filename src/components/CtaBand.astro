@@ -1,9 +1,11 @@
 ---
 import { site } from '../site';
 interface Props {
-  heading?: string;
+  // 'hire' speaks to recruiters and hiring managers; 'consult' to teams buying contract work.
+  mode?: 'hire' | 'consult';
 }
-const { heading = 'Hiring a full-stack or mobile engineer?' } = Astro.props;
+const { mode = 'hire' } = Astro.props;
+const heading = mode === 'hire' ? 'Hiring a full-stack or mobile engineer?' : 'Have an app where the numbers don’t add up?';
 ---
 
 <section class="section cta-wrap" id="contact">
@@ -11,18 +13,44 @@ const { heading = 'Hiring a full-stack or mobile engineer?' } = Astro.props;
     <div class="cta">
       <div>
         <h2 class="display-lg">{heading}</h2>
-        <p class="cta-sub">
-          I’m based in Seattle, working globally, and open to senior and lead roles across mobile, payments and the
-          systems behind them. Email is the fastest way to reach me.
-        </p>
+        {
+          mode === 'hire' ? (
+            <p class="cta-sub">
+              I’m based in Seattle, working globally, and open to senior and lead roles across mobile, payments and the
+              systems behind them. Email is the fastest way to reach me.
+            </p>
+          ) : (
+            <p class="cta-sub">
+              Tell me what’s breaking: payments, analytics, releases, or a mobile app that needs to ship. The first call
+              is free, and you’ll leave with a clear next step.
+            </p>
+          )
+        }
       </div>
-      <div class="cta-actions">
-        <a href={`mailto:${site.email}`} class="btn btn-on-dark">
-          Email me <span class="arrow" aria-hidden="true">→</span>
-        </a>
-        <a href={site.linkedin} target="_blank" rel="noopener" class="cta-mail">Connect on LinkedIn →</a>
-        <a href={site.calendly} target="_blank" rel="noopener" class="cta-mail">Contract work? Book a call →</a>
-      </div>
+      {
+        mode === 'hire' ? (
+          <div class="cta-actions">
+            <a href={`mailto:${site.email}`} class="btn btn-on-dark">
+              Email me <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href={site.linkedin} target="_blank" rel="noopener" class="cta-mail">
+              Connect on LinkedIn →
+            </a>
+            <a href="/consulting/" class="cta-mail">
+              Contract work? See consulting →
+            </a>
+          </div>
+        ) : (
+          <div class="cta-actions">
+            <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-on-dark">
+              Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href={`mailto:${site.email}`} class="cta-mail">
+              {site.email}
+            </a>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>
