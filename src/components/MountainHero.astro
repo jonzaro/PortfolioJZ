@@ -1,0 +1,103 @@
+---
+/*
+ * The scrolling mountain band from the original site, rebuilt as the
+ * atmospheric hero (the slot Stripe fills with its gradient mesh).
+ * The tile is seamless, so translating by exactly one tile width loops cleanly.
+ */
+interface Props {
+  size?: 'full' | 'compact';
+}
+const { size = 'full' } = Astro.props;
+---
+
+<section class:list={['hero', `hero--${size}`]}>
+  <div class="hero-sky" aria-hidden="true"></div>
+  <div class="hero-mountains" aria-hidden="true"></div>
+  <div class="hero-shards" aria-hidden="true"></div>
+  <div class="hero-content container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .hero {
+    --tile-w: 1500px;
+    --tile-h: calc(var(--tile-w) / 3);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--on-primary);
+    background: var(--sky);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 56px), 0 100%);
+  }
+  .hero--full {
+    min-height: min(900px, 100svh);
+    padding: 140px 0 calc(var(--tile-h) * 0.62);
+  }
+  .hero--compact {
+    --tile-w: 1200px;
+    padding: 132px 0 calc(var(--tile-h) * 0.66);
+  }
+
+  .hero-sky {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background: linear-gradient(180deg, #1f6f95 0%, var(--sky) 55%);
+  }
+  .hero-mountains {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -2;
+    width: calc(var(--tile-w) * 4);
+    height: var(--tile-h);
+    background: url('/images/bg.jpg') bottom left / var(--tile-w) var(--tile-h) repeat-x;
+    animation: drift 60s linear infinite;
+    will-change: transform;
+  }
+  .hero-shards {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('/images/overlay.svg') center / cover no-repeat;
+    opacity: 0;
+    animation: fade-in 1.5s 0.6s ease forwards;
+    mix-blend-mode: soft-light;
+  }
+  .hero-content {
+    position: relative;
+  }
+
+  @keyframes drift {
+    to {
+      transform: translate3d(calc(var(--tile-w) * -1), 0, 0);
+    }
+  }
+  @keyframes fade-in {
+    to {
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      --tile-w: 1050px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%);
+    }
+    .hero--full {
+      min-height: 0;
+      padding-top: 108px;
+    }
+    .hero--compact {
+      --tile-w: 900px;
+      padding-top: 100px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-mountains {
+      animation: none;
+    }
+  }
+</style>

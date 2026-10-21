@@ -1,0 +1,75 @@
+---
+import { site } from '../site';
+interface Props {
+  heading?: string;
+}
+const { heading = 'Have an app where the numbers don’t add up?' } = Astro.props;
+---
+
+<section class="section cta-wrap">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2 class="display-lg">{heading}</h2>
+        <p class="cta-sub">
+          Tell me what's breaking: payments, analytics, releases, or a mobile app that needs to ship. The first call is
+          free, and you'll leave with a clear next step.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-on-dark">
+          Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href={`mailto:${site.email}`} class="cta-mail">{site.email}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 56px;
+    border-radius: var(--r-xl);
+    color: var(--on-primary);
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(83, 58, 253, 0.55) 0%, rgba(83, 58, 253, 0) 55%),
+      radial-gradient(90% 120% at 0% 100%, rgba(52, 140, 178, 0.45) 0%, rgba(52, 140, 178, 0) 60%),
+      var(--brand-dark-900);
+  }
+  .cta h2 {
+    color: var(--on-primary);
+  }
+  .cta-sub {
+    margin-top: 16px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 17px;
+    max-width: 520px;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    justify-self: end;
+  }
+  .cta-mail {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+  }
+  .cta-mail:hover {
+    color: var(--on-primary);
+  }
+  @media (max-width: 899px) {
+    .cta {
+      grid-template-columns: 1fr;
+      padding: 32px 24px;
+    }
+    .cta-actions {
+      justify-self: start;
+    }
+  }
+</style>

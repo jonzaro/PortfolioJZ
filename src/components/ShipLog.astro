@@ -1,0 +1,115 @@
+---
+/*
+ * Hero composite: a release-log card in the Stripe "dashboard mockup" style.
+ * Every row links to the case study it summarizes.
+ */
+const rows = [
+  { date: 'Oct 19', what: 'Checkout site cut over to Vercel', slug: 'website-cutover', state: 'Live' },
+  { date: 'Oct 14', what: 'Passwordless signup API in production', slug: 'magic-link-signup', state: 'Rolling out' },
+  { date: 'Sep 21', what: 'Subscription repair verified and closed', slug: 'subscription-data-repair', state: 'Done' },
+  { date: 'Aug 06', what: 'Trial double-count found in audit', slug: 'analytics-ground-truth', state: 'Done' },
+  { date: 'May 13', what: 'OTA native-module gate in CI', slug: 'release-safety', state: 'Live' },
+  { date: 'May 11', what: 'Zapier replaced with signed webhooks', slug: 'zapier-to-webhooks', state: 'Live' },
+];
+---
+
+<div class="log" aria-label="Recent releases at Burn">
+  <div class="log-head">
+    <div>
+      <p class="log-title">Shipped at Burn</p>
+      <p class="caption">Burn by Cara Loren · iOS, Android, web</p>
+    </div>
+    <span class="live"><i aria-hidden="true"></i>2026</span>
+  </div>
+  <ul>
+    {
+      rows.map((r) => (
+        <li>
+          <a href={`/work/${r.slug}/`}>
+            <span class="date tnum">{r.date}</span>
+            <span class="what">{r.what}</span>
+            <span class:list={['state', r.state === 'Rolling out' ? 'state--amber' : 'state--green']}>{r.state}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .log {
+    background: var(--canvas);
+    color: var(--ink);
+    border-radius: var(--r-xl);
+    box-shadow:
+      rgba(0, 37, 80, 0.22) 0 24px 60px,
+      rgba(0, 55, 112, 0.1) 0 2px 8px;
+    overflow: hidden;
+  }
+  .log-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .log-title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-feature-settings: 'tnum';
+  }
+  .live i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #18b47b;
+    box-shadow: 0 0 0 3px rgba(24, 180, 123, 0.18);
+  }
+  ul {
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+  }
+  li a {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 22px;
+    color: var(--ink);
+    font-size: 14px;
+    transition: background-color 0.15s ease;
+  }
+  li a:hover {
+    background: var(--canvas-soft);
+    color: var(--ink);
+  }
+  .date {
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+  .what {
+    font-weight: 400;
+  }
+  .state {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+  }
+  .state--green {
+    background: #e3f7ee;
+    color: #0e7a52;
+  }
+  .state--amber {
+    background: #fff1dc;
+    color: #8a5a00;
+  }
+</style>
