@@ -5,7 +5,6 @@
  */
 const rows = [
   { date: 'Oct 19', what: 'Checkout site cut over to Vercel', slug: 'website-cutover', state: 'Live' },
-  { date: 'Oct 14', what: 'Passwordless signup API in production', slug: 'magic-link-signup', state: 'Rolling out' },
   { date: 'Sep 21', what: 'Subscription repair verified and closed', slug: 'subscription-data-repair', state: 'Done' },
   { date: 'Aug 06', what: 'Trial double-count found in audit', slug: 'analytics-ground-truth', state: 'Done' },
   { date: 'May 13', what: 'OTA native-module gate in CI', slug: 'release-safety', state: 'Live' },
@@ -28,7 +27,7 @@ const rows = [
           <a href={`/work/${r.slug}/`}>
             <span class="date tnum">{r.date}</span>
             <span class="what">{r.what}</span>
-            <span class:list={['state', r.state === 'Rolling out' ? 'state--amber' : 'state--green']}>{r.state}</span>
+            <span class="state">{r.state}</span>
           </a>
         </li>
       ))
@@ -103,13 +102,7 @@ const rows = [
     padding: 3px 8px;
     border-radius: var(--r-pill);
     white-space: nowrap;
-  }
-  .state--green {
     background: #e3f7ee;
     color: #0e7a52;
-  }
-  .state--amber {
-    background: #fff1dc;
-    color: #8a5a00;
   }
 </style>
