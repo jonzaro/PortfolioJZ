@@ -1,0 +1,357 @@
+---
+import Base from '../layouts/Base.astro';
+import MountainHero from '../components/MountainHero.astro';
+import { site } from '../site';
+
+// Public resume. No phone number: contact goes through email and LinkedIn.
+// After editing, regenerate public/jon-zaro-resume.pdf (see README).
+const roles = [
+  {
+    title: 'Lead Web Developer',
+    org: 'Smash Creative',
+    period: 'Jul 2024 – Present',
+    intro:
+      'Lead engineering on Burn by Cara Loren, a subscription fitness app on iOS, Android and the web. Own the architecture, the API, payments, analytics and the release pipeline.',
+    points: [
+      'Contained and repaired a backfill that overstated active subscriptions (14.9% → 6.1% on the first pass; 64 duplicate pairs → 0), with a journal that makes every production repair reversible.',
+      'Replaced a frozen Zapier pipeline (700+ stuck tasks) with signed first-party webhooks in the Express API, removing ~40 points of conversion inflation from a stale paid flag. Added 63 tests.',
+      'After an over-the-air update crashed the app on launch, wrote the postmortem and built a native-module CI gate and rollback tooling: production rollback under 5 minutes, and 4 people able to deploy safely, up from 1.',
+      'Rebuilt activation analytics on billing ground truth: corrected the team’s headline metric (80% → 47%), found ~30% overstatement in trial volume, and removed an onboarding step with 67% drop-off.',
+      'Ran the checkout site cutover from WordPress to Vercel: 17 of 17 production paths verified, 3 live checkout bugs fixed, and a real purchase, login and cancellation verified end to end.',
+      'Unblocked end-to-end testing with a five-line accessibility fix, avoiding a planned 2–3 week migration of 29 screens.',
+      'Added Claude AI code review to CI on every pull request, and systematized AI-powered customer service processes.',
+    ],
+  },
+  {
+    title: 'Web Developer',
+    org: 'Smash Creative',
+    period: 'Jan – Jun 2024',
+    points: [
+      'Built and released v3.0 of the Burn iOS and Android app, including a progressive difficulty algorithm that adjusts exercise intensity to each user’s performance.',
+      'Built an Instagram tracking automation that cut manual data collection time by 80%.',
+    ],
+  },
+  {
+    title: 'Web Development Intern',
+    org: 'Smash Creative',
+    period: 'Aug – Dec 2023',
+    points: [
+      'Refactored the revenue tracking dashboard, cutting report preparation from 2 hours to 20 minutes.',
+      'Built Airtable and Zapier workflow integrations to automate operations.',
+    ],
+  },
+  {
+    title: 'Volunteer Developer',
+    org: 'Lehi Fire Department',
+    period: 'Jan 2022 – Present',
+    points: [
+      'Part of the team building a protocols app that gives firefighters fast access to procedures, drug dosages and pediatric emergency information. Built its feedback component and Firestore store.',
+    ],
+  },
+];
+
+const skills = [
+  { group: 'Languages & web', items: 'TypeScript, JavaScript, React, Astro, HTML, CSS, Tailwind' },
+  { group: 'Mobile', items: 'React Native, Expo, EAS Build & Update, App Store and Play releases' },
+  { group: 'Backend & data', items: 'Node, Express, Prisma, PostgreSQL, SQL, MongoDB, Firebase' },
+  { group: 'Payments & analytics', items: 'Stripe, RevenueCat, webhooks, PostHog, feature flags, A/B tests' },
+  { group: 'Infra & release', items: 'GitHub Actions, Fly.io, Vercel, Netlify, Doppler, Sentry' },
+  {
+    group: 'AI & automation',
+    items: 'Claude Code (daily), multi-agent workflows, hooks, AI code review in CI, custom GPTs, Zapier',
+  },
+];
+
+const projects = [
+  {
+    name: 'Agent operations system',
+    body: 'Claude Code hooks and scheduled jobs for session briefings, handoffs, meeting action items and weekly digests. Python, with tests.',
+  },
+  { name: 'HopeBot', body: 'Custom-trained GPT recovery coach with a Stripe paywall.' },
+  { name: 'PrizePortal', body: 'Mock iOS loyalty app with auth, points and redemption. Expo, React Native.' },
+];
+---
+
+<Base title="Resume | Jon Zaro" description="Resume of Jon Zaro, full-stack and mobile engineer based in Seattle, working globally.">
+  <MountainHero size="compact">
+    <div class="resume-hero">
+      <h1 class="display-xl">Resume</h1>
+      <div class="hero-actions">
+        <a href="/jon-zaro-resume.pdf" class="btn btn-primary" download>
+          Download PDF <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+        <a href={`mailto:${site.email}`} class="btn btn-ghost-light">Email me</a>
+      </div>
+    </div>
+  </MountainHero>
+
+  <div class="container">
+    <article class="resume">
+      <header class="r-head">
+        <div>
+          <h2 class="r-name">Jon Zaro</h2>
+          <p class="r-role">Full-stack & Mobile Engineer</p>
+        </div>
+        <ul class="r-contact">
+          <li>Seattle, WA · working globally</li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href="https://jonzaro.com">jonzaro.com</a></li>
+          <li><a href={site.linkedin}>linkedin.com/in/jonzaro</a></li>
+          <li><a href={site.github}>github.com/jonzaro</a></li>
+        </ul>
+      </header>
+
+      <p class="r-summary">
+        Full-stack and mobile engineer leading development on a subscription app across iOS, Android and the web. I make
+        production systems measurable, reversible and safe to ship, and I build with frontier AI models every day.
+      </p>
+
+      <section>
+        <h3 class="r-h">Experience</h3>
+        {
+          roles.map((r) => (
+            <div class="r-role-block">
+              <div class="r-role-head">
+                <p>
+                  <strong>{r.title}</strong> · {r.org}
+                </p>
+                <span class="tnum">{r.period}</span>
+              </div>
+              {r.intro && <p class="r-intro">{r.intro}</p>}
+              <ul>
+                {r.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </section>
+
+      <section>
+        <h3 class="r-h">Skills</h3>
+        <dl class="r-skills">
+          {
+            skills.map((s) => (
+              <div>
+                <dt>{s.group}</dt>
+                <dd>{s.items}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section>
+        <h3 class="r-h">Projects</h3>
+        <ul>
+          {
+            projects.map((p) => (
+              <li>
+                <strong>{p.name}:</strong> {p.body}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="r-h">Education</h3>
+        <div class="r-role-head">
+          <p>
+            <strong>V School</strong> · Certificate, Full-Stack JavaScript Web Development
+          </p>
+          <span class="tnum">2023</span>
+        </div>
+      </section>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .resume-hero h1 {
+    color: var(--on-primary);
+    text-shadow: 0 1px 24px rgba(8, 40, 70, 0.25);
+  }
+  .resume {
+    max-width: 860px;
+    margin: -120px auto 96px;
+    position: relative;
+    z-index: 2;
+    padding: 56px 64px;
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-2);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .r-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .r-name {
+    font-size: 32px;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+  }
+  .r-role {
+    margin-top: 4px;
+    color: var(--ink-secondary);
+    font-size: 17px;
+  }
+  .resume .r-contact {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    font-size: 14px;
+    color: var(--ink-secondary);
+  }
+  .r-contact a {
+    color: inherit;
+  }
+  .r-summary {
+    margin: 24px 0 0;
+    color: var(--ink-secondary);
+  }
+  .r-h {
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+  .r-role-block + .r-role-block {
+    margin-top: 16px;
+  }
+  .r-role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4px 16px;
+    flex-wrap: wrap;
+  }
+  .r-role-head span {
+    color: var(--ink-mute);
+    font-size: 14px;
+  }
+  .resume strong {
+    font-weight: 550;
+  }
+  .r-intro {
+    margin-top: 4px;
+    color: var(--ink-secondary);
+  }
+  .resume ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    color: var(--ink-secondary);
+  }
+  .resume li + li {
+    margin-top: 3px;
+  }
+  .r-skills {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+  }
+  .r-skills div {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 12px;
+  }
+  .r-skills dt {
+    font-weight: 500;
+  }
+  .r-skills dd {
+    margin: 0;
+    color: var(--ink-secondary);
+  }
+
+  @media (max-width: 767px) {
+    .resume {
+      margin-top: -80px;
+      padding: 28px 20px;
+    }
+    .r-contact {
+      text-align: left;
+    }
+    .r-skills div {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  /* Print and PDF export: only the resume sheet, on letter paper. */
+  @page {
+    size: letter;
+    margin: 0.35in 0.5in;
+  }
+  @media print {
+    :global(.nav),
+    :global(.hero),
+    :global(.footer),
+    :global(.skip) {
+      display: none !important;
+    }
+    :global(body) {
+      background: #fff;
+    }
+    .container {
+      padding: 0;
+      max-width: none;
+    }
+    .resume {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+      font-size: 9.5pt;
+      line-height: 1.32;
+    }
+    .r-name {
+      font-size: 20pt;
+    }
+    .r-role {
+      font-size: 11pt;
+    }
+    .r-contact {
+      font-size: 9pt;
+    }
+    .r-h {
+      margin: 10pt 0 4pt;
+      padding-bottom: 3pt;
+      font-size: 8.5pt;
+    }
+    .r-summary {
+      margin-top: 10pt;
+    }
+    .r-role-block + .r-role-block {
+      margin-top: 6pt;
+    }
+    .r-skills {
+      gap: 2pt;
+    }
+    .r-role-head span {
+      font-size: 9pt;
+    }
+    .resume li + li {
+      margin-top: 1pt;
+    }
+    .r-skills div {
+      grid-template-columns: 1.6in 1fr;
+    }
+    .r-role-block {
+      break-inside: avoid-page;
+    }
+  }
+</style>

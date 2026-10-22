@@ -20,6 +20,7 @@ npm run build    # static output in dist/
 |---|---|
 | `DESIGN.md` | The design system (Stripe-inspired, from VoltAgent/awesome-design-md) plus this site's adaptations. Read it before changing UI. |
 | `src/content/work/*.md` | One file per case study. Frontmatter holds the card copy, stats and code panel; the body is the write-up. The schema lives in `src/content.config.ts`. |
+| `src/pages/resume.astro` | Public resume (no phone number). After editing it, regenerate the PDF with `npm run build && npm run preview`, then `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer --print-to-pdf=public/jon-zaro-resume.pdf http://localhost:4321/resume/`. Keep it to one page. |
 | `src/pages/consulting.astro` | Contract-work landing page (not in the main nav; linked from the contact band and footer): services, how it works, case studies, CTA to book a call. |
 | `src/pages/index.astro` | Homepage: hero, proof strip, experience and skills, AI and automation, case studies, principles, side projects, contact. |
 | `src/pages/work/[slug].astro` | Case study template. |
