@@ -7,11 +7,13 @@ import { site } from '../site';
 interface Props {
   title?: string;
   description?: string;
+  navCta?: 'email' | 'call';
 }
 
 const {
   title = `${site.name} | ${site.role}`,
-  description = 'Jon Zaro builds and ships mobile apps and the systems behind them: payments, analytics, CMS and the release pipeline.',
+  navCta = 'email',
+  description = 'Jon Zaro is a full-stack and mobile engineer and lead developer on Burn by Cara Loren: iOS and Android, payments, analytics, release safety and AI workflows.',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -35,7 +37,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
-    <Nav />
+    <Nav cta={navCta} />
     <main id="content">
       <slot />
     </main>

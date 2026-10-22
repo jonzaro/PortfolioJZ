@@ -1,0 +1,275 @@
+---
+import Base from '../layouts/Base.astro';
+import MountainHero from '../components/MountainHero.astro';
+import ShipLog from '../components/ShipLog.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import CaseGrid from '../components/CaseGrid.astro';
+import Principles from '../components/Principles.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../site';
+
+// Contract-work landing page. Not in the main nav: Jon links it directly to founders and teams.
+const services = [
+  {
+    title: 'Mobile apps that ship',
+    body: 'Expo and React Native for iOS and Android: EAS builds, over-the-air updates that can’t brick the app, and App Store and Play releases.',
+    tags: ['Expo', 'React Native', 'EAS', 'Maestro'],
+  },
+  {
+    title: 'Payments & subscriptions',
+    body: 'Stripe and RevenueCat wired up so web and app purchases agree: signed webhooks, reconciliation, checkout and cancellation flows.',
+    tags: ['Stripe', 'RevenueCat', 'Webhooks', 'Postgres'],
+  },
+  {
+    title: 'Analytics you can steer by',
+    body: 'Event tracking that fires once per real thing, identity that doesn’t merge strangers, and funnels checked against billing data.',
+    tags: ['PostHog', 'Feature flags', 'A/B tests', 'SQL'],
+  },
+  {
+    title: 'Release safety',
+    body: 'CI gates, one-click rollback, migrations with tested down scripts, and deploy checks that prove what is actually running.',
+    tags: ['GitHub Actions', 'Fly.io', 'Vercel', 'Sentry'],
+  },
+  {
+    title: 'AI in your engineering workflow',
+    body: 'AI code review in CI, agent workflows and Claude Code set up for your team, with tests and human review built in so speed doesn’t cost correctness.',
+    tags: ['Claude Code', 'GitHub Actions', 'Agent workflows'],
+  },
+  {
+    title: 'Integrations & automation',
+    body: 'Zapier and Airtable glue moved into tested first-party webhooks, plus the email, CRM and billing integrations that keep your data in one place.',
+    tags: ['Webhooks', 'Klaviyo', 'Zapier', 'Airtable'],
+  },
+];
+
+const steps = [
+  {
+    title: 'A free first call',
+    body: 'Tell me what’s broken or what needs to ship. You’ll get a straight answer on whether I can help.',
+  },
+  {
+    title: 'A written scope',
+    body: 'What’s wrong, what I’d fix first, and how we’ll know it worked, agreed before any work starts.',
+  },
+  {
+    title: 'Shipped and verified',
+    body: 'Fixes land with tests and are checked in production, not just merged.',
+  },
+];
+---
+
+<Base
+  title="Consulting | Jon Zaro"
+  description="Contract engineering for subscription apps: payments, analytics, release safety, mobile and AI workflows. Based in Seattle, working globally."
+  navCta="call"
+>
+  <MountainHero>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Contract and consulting · Seattle, working globally</span>
+        <h1 class="display-xxl">Subscription apps that ship, with numbers you can trust.</h1>
+        <p class="hero-sub">
+          I’m Jon Zaro, a full-stack and mobile engineer and lead developer on Burn by Cara Loren. I take production
+          systems that are quietly wrong, like payments, analytics and releases, and make them measurable, reversible
+          and safe to ship.
+        </p>
+        <div class="hero-actions">
+          <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-primary">
+            Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#work" class="btn btn-ghost-light">Read the case studies</a>
+        </div>
+      </div>
+      <div class="hero-log">
+        <ShipLog />
+      </div>
+    </div>
+  </MountainHero>
+
+  <ProofStrip />
+
+  <section class="section section--soft" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What I can take off your plate</span>
+        <h2 class="display-xl">The parts of an app that touch money.</h2>
+      </div>
+      <div class="service-grid">
+        {
+          services.map((s) => (
+            <article class="card">
+              <h3 class="heading-lg">{s.title}</h3>
+              <p class="service-body">{s.body}</p>
+              <div class="tag-row">
+                {s.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2 class="display-lg">Three steps, no surprises.</h2>
+      </div>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <span class="step-n tnum">{i + 1}</span>
+              <h3 class="heading-md">{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="work">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Case studies</span>
+        <h2 class="display-xl">Five problems from inside one production app.</h2>
+        <p class="body-lg">
+          Burn is a subscription fitness app on iOS, Android and the web. These are the problems I was trusted with
+          there, from data repair to release safety, and what changed because of them.
+        </p>
+      </div>
+      <CaseGrid
+        cta={{
+          title: 'Your problem could be next.',
+          caption: 'A short call, a straight answer on whether I can help.',
+          label: 'Book a call',
+          href: site.calendly,
+          external: true,
+        }}
+      />
+    </div>
+  </section>
+
+  <Principles />
+
+  <section class="section section--soft">
+    <div class="container who">
+      <img src="/images/jon.jpg" alt="Jon Zaro" width="360" height="360" class="who-photo" loading="lazy" />
+      <div class="who-copy">
+        <span class="eyebrow">Who you’d work with</span>
+        <h2 class="display-lg">Me, directly.</h2>
+        <p class="body-lg">
+          No account managers or hand-offs. I’ve led engineering on Burn since 2024, across the mobile app, the API,
+          payments, analytics and releases. I’m based in Seattle and work with teams anywhere.
+        </p>
+        <div class="who-links">
+          <a href="/#experience">Full experience →</a>
+          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand mode="consult" />
+</Base>
+
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .service-grid .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .service-body {
+    color: var(--ink-secondary);
+    flex: 1;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+  }
+  .steps p {
+    color: var(--ink-secondary);
+  }
+  .step-n {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 14px;
+  }
+
+  .who {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .who-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-2);
+  }
+  .who-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .who-copy .eyebrow {
+    margin-bottom: 0;
+  }
+  .who-links {
+    display: flex;
+    gap: 24px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 1023px) {
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .who {
+      grid-template-columns: 240px 1fr;
+      gap: 40px;
+    }
+  }
+  @media (max-width: 767px) {
+    .service-grid,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .who {
+      grid-template-columns: 1fr;
+    }
+    .who-photo {
+      max-width: 220px;
+    }
+  }
+</style>

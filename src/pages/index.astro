@@ -1,85 +1,88 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import MountainHero from '../components/MountainHero.astro';
 import ShipLog from '../components/ShipLog.astro';
-import CaseCard from '../components/CaseCard.astro';
+import CaseGrid from '../components/CaseGrid.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Principles from '../components/Principles.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../site';
 
-const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const heroFacts = [
+  'Based in Seattle, working globally',
+  'Lead developer since Jul 2024',
+  'TypeScript · React Native · Node · Postgres',
+  'Builds with AI every day',
+];
 
-// Each number answers "compared to what?" in the headline; the slug links the proof to its case study.
-const proof = [
+// Titles and dates match the resume and LinkedIn; recruiters cross-check them.
+const roles = [
   {
-    topic: 'Releases',
-    value: '12 hrs → 5 min',
-    headline: 'Time to recover from a bad release',
-    detail: 'A broken update once took 12 hours to fix. Now it rolls back in minutes.',
-    slug: 'release-safety',
+    title: 'Lead Web Developer',
+    org: 'Smash Creative',
+    period: 'Jul 2024 – Present',
+    body: 'Lead engineering on Burn by Cara Loren, a subscription fitness app on iOS, Android and the web. I own the architecture, the API, payments, analytics and the release pipeline.',
+    points: [
+      'Built the release safety net: CI gates, one-click rollback and migrations with tested down scripts.',
+      'Added AI code review to CI and systematized AI-powered customer service processes.',
+    ],
   },
   {
-    topic: 'Analytics',
-    value: '80% → 47%',
-    headline: 'The team’s key growth number, corrected',
-    detail: 'Checked against billing data, the real conversion rate was far lower than the one being used.',
-    slug: 'analytics-ground-truth',
+    title: 'Web Developer',
+    org: 'Smash Creative',
+    period: 'Jan – Jun 2024',
+    body: 'Built and released v3.0 of the Burn iOS and Android app, including a progressive difficulty algorithm that adjusts workouts to each user’s performance.',
+    points: ['Built an Instagram tracking automation that cut manual data collection by 80%.'],
   },
   {
-    topic: 'Billing data',
-    value: '90% fewer',
-    headline: 'Subscriptions stuck in a failed-payment state',
-    detail: 'Repaired live billing records in place, with an undo for every change.',
-    slug: 'subscription-data-repair',
+    title: 'Web Development Intern',
+    org: 'Smash Creative',
+    period: 'Aug – Dec 2023',
+    body: 'Refactored the revenue reporting dashboard, cutting report prep from 2 hours to 20 minutes, and built Airtable and Zapier automations for operations.',
+    points: [],
   },
   {
-    topic: 'Integrations',
-    value: '700+',
-    headline: 'Stuck signup and payment tasks cleared',
-    detail: 'Replaced a frozen Zapier queue with tested webhooks in our own API.',
-    slug: 'zapier-to-webhooks',
+    title: 'Volunteer Developer',
+    org: 'Lehi Fire Department',
+    period: 'Jan 2022 – Present',
+    body: 'Part of the team building a protocols app that gives firefighters fast access to procedures, drug dosages and pediatric emergency information.',
+    points: [],
   },
 ];
 
-const services = [
-  {
-    title: 'Mobile apps that ship',
-    body: 'Expo and React Native for iOS and Android: EAS builds, over-the-air updates that can’t brick the app, and App Store and Play releases.',
-    tags: ['Expo', 'React Native', 'EAS', 'Maestro'],
-  },
-  {
-    title: 'Payments & subscriptions',
-    body: 'Stripe and RevenueCat wired up so web and app purchases agree: signed webhooks, reconciliation, checkout and cancellation flows.',
-    tags: ['Stripe', 'RevenueCat', 'Webhooks', 'Postgres'],
-  },
-  {
-    title: 'Analytics you can steer by',
-    body: 'Event tracking that fires once per real thing, identity that doesn’t merge strangers, and funnels checked against billing data.',
-    tags: ['PostHog', 'Feature flags', 'A/B tests', 'SQL'],
-  },
-  {
-    title: 'Release safety',
-    body: 'CI gates, one-click rollback, migrations with tested down scripts, and deploy checks that prove what is actually running.',
-    tags: ['GitHub Actions', 'Fly.io', 'Vercel', 'Sentry'],
-  },
+const skills = [
+  { group: 'Mobile', items: ['React Native', 'Expo', 'EAS Build & Update', 'App Store & Play releases'] },
+  { group: 'Web', items: ['TypeScript', 'React', 'Astro', 'Tailwind', 'HTML & CSS'] },
+  { group: 'Backend & data', items: ['Node', 'Express', 'Prisma', 'PostgreSQL', 'SQL', 'MongoDB', 'Firebase'] },
+  { group: 'Payments & analytics', items: ['Stripe', 'RevenueCat', 'Webhooks', 'PostHog', 'Feature flags', 'A/B tests'] },
+  { group: 'Infra & release', items: ['GitHub Actions', 'Fly.io', 'Vercel', 'Netlify', 'Doppler', 'Sentry'] },
+  { group: 'AI & automation', items: ['Claude Code', 'Agent workflows', 'Subagents', 'Hooks', 'Custom GPTs', 'Zapier', 'Airtable'] },
 ];
 
-const principles = [
+const ai = [
   {
-    title: 'Measure before I build',
-    body: 'Most expensive bugs I’ve fixed were wrong numbers, not crashes. I reconcile against a second source before I trust a metric.',
+    where: 'Burn · production',
+    title: 'AI code review on every pull request',
+    body: 'I added a GitHub Actions workflow that has Claude review every pull request and post its findings. It informs review rather than replacing it: a person still approves and merges.',
+    tags: ['GitHub Actions', 'Claude Code Action'],
   },
   {
-    title: 'Every repair is reversible',
-    body: 'Production data changes record their own undo. Releases have a rollback that takes minutes, not a rebuild.',
+    where: 'Personal tooling',
+    title: 'An agent operations system for my own work',
+    body: 'Claude Code hooks and scheduled jobs brief each session with open work, write handoffs between sessions, turn meeting notes into action items, and generate a weekly digest and pre-meeting prep. Written in Python, with tests.',
+    tags: ['Claude Code hooks', 'Python', 'cron'],
   },
   {
-    title: 'Merged isn’t shipped',
-    body: 'A fix counts when the deployed revision includes it and the data shows the problem stopped, not when the PR merges.',
+    where: 'How I run long tasks',
+    title: 'Multi-agent delegation',
+    body: 'A lead model plans and reviews while smaller, cheaper models run searches and scoped coding tasks in isolated git worktrees. I read every diff and its test output before it lands.',
+    tags: ['Subagents', 'Git worktrees', 'Model routing'],
   },
   {
-    title: 'AI-accelerated, human-verified',
-    body: 'I build with Claude Code every day, and every change still ships with tests that fail without the fix.',
+    where: 'Since 2023',
+    title: 'Workflow automation',
+    body: 'Zapier and Airtable pipelines for operations and sales, an Instagram tracking tool that cut manual collection by 80%, and later moving a frozen Zapier pipeline into tested first-party webhooks.',
+    tags: ['Zapier', 'Airtable', 'Webhooks'],
   },
 ];
 
@@ -115,19 +118,23 @@ const side = [
   <MountainHero>
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="hero-eyebrow">Lead developer · Burn by Cara Loren</span>
-        <h1 class="display-xxl">Subscription apps that ship, with numbers you can trust.</h1>
+        <span class="hero-eyebrow">Open to full-stack and mobile engineering roles</span>
+        <h1 class="display-xxl">Full-stack and mobile engineer. I ship subscription apps.</h1>
         <p class="hero-sub">
-          I’m Jon Zaro, a full-stack and mobile engineer. I lead engineering on Burn: the iOS and Android app, the API,
-          payments, analytics and the release pipeline. I take production systems that are quietly wrong and make
-          them measurable, reversible and safe to ship.
+          I’m Jon Zaro, lead developer on Burn by Cara Loren: the iOS and Android app, the API, payments, analytics
+          and the release pipeline. I build with frontier AI models every day, from Claude Code in my editor to agent
+          workflows that review pull requests and automate reporting.
         </p>
         <div class="hero-actions">
-          <a href={site.calendly} target="_blank" rel="noopener" class="btn btn-primary">
-            Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+          <a href={`mailto:${site.email}`} class="btn btn-primary">
+            Email me <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#work" class="btn btn-ghost-light">Read the case studies</a>
+          <a href={site.linkedin} target="_blank" rel="noopener" class="btn btn-ghost-light">LinkedIn</a>
+          <a href="/resume/" class="btn btn-ghost-light">Resume</a>
         </div>
+        <ul class="hero-facts">
+          {heroFacts.map((f) => <li>{f}</li>)}
+        </ul>
       </div>
       <div class="hero-log">
         <ShipLog />
@@ -135,26 +142,105 @@ const side = [
     </div>
   </MountainHero>
 
-  <section class="proof" aria-labelledby="proof-title">
+  <ProofStrip />
+
+  <section class="section" id="experience">
     <div class="container">
-      <p class="proof-title caption" id="proof-title">What changed at Burn</p>
-      <ul class="proof-grid">
-        {
-          proof.map((p) => (
+      <div class="exp">
+        <aside class="exp-side">
+          <img src="/images/jon.jpg" alt="Jon Zaro" width="360" height="360" class="exp-photo" loading="lazy" />
+          <p class="exp-bio">
+            Intern to lead developer in 11 months. I finished V School’s full-stack JavaScript program in 2023. Off the
+            keyboard I’m a dad of three boys, a forager and a hiker, which is where the mountains came from.
+          </p>
+          <div class="exp-links">
+            <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn →</a>
+            <a href={site.github} target="_blank" rel="noopener">GitHub →</a>
+            <a href="/resume/">Resume →</a>
+          </div>
+        </aside>
+        <div>
+          <span class="eyebrow">Experience</span>
+          <h2 class="display-lg">Three years shipping production code.</h2>
+          <ol class="timeline">
+            {
+              roles.map((r) => (
+                <li>
+                  <div class="role-head">
+                    <h3 class="heading-md">
+                      {r.title} <span class="role-org">· {r.org}</span>
+                    </h3>
+                    <span class="caption tnum">{r.period}</span>
+                  </div>
+                  <p>{r.body}</p>
+                  {r.points.length > 0 && (
+                    <ul class="role-points">
+                      {r.points.map((pt) => (
+                        <li>{pt}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))
+            }
             <li>
-              <a href={`/work/${p.slug}/`} class="proof-card">
-                <span class="proof-topic">{p.topic}</span>
-                <span class="proof-value tnum">{p.value}</span>
-                <span class="proof-headline">{p.headline}</span>
-                <span class="proof-detail">{p.detail}</span>
-                <span class="proof-link">
-                  Read the case study <span class="arrow" aria-hidden="true">→</span>
-                </span>
-              </a>
+              <div class="role-head">
+                <h3 class="heading-md">
+                  Full-stack JavaScript certificate <span class="role-org">· V School</span>
+                </h3>
+                <span class="caption tnum">2023</span>
+              </div>
             </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="skills" aria-labelledby="skills-title">
+        <h3 class="heading-lg" id="skills-title">Skills</h3>
+        <dl class="skills-grid">
+          {
+            skills.map((s) => (
+              <div>
+                <dt class="caption">{s.group}</dt>
+                <dd class="tag-row">
+                  {s.items.map((i) => (
+                    <span class="tag">{i}</span>
+                  ))}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="ai">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">AI and automation</span>
+        <h2 class="display-xl">I build with frontier models every day, and I verify what they ship.</h2>
+        <p class="body-lg">
+          AI is part of how I engineer, not a side experiment: in code review, in how I run long tasks, and in the
+          tooling that keeps my work organized between sessions.
+        </p>
+      </div>
+      <div class="ai-grid">
+        {
+          ai.map((a) => (
+            <article class="card">
+              <span class="ai-where">{a.where}</span>
+              <h3 class="heading-lg">{a.title}</h3>
+              <p class="ai-body">{a.body}</p>
+              <div class="tag-row">
+                {a.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </article>
           ))
         }
-      </ul>
+      </div>
     </div>
   </section>
 
@@ -168,88 +254,18 @@ const side = [
           there, from data repair to release safety, and what changed because of them.
         </p>
       </div>
-      <div class="case-grid">
-        {work.map((entry) => <CaseCard entry={entry} />)}
-        <a href={site.calendly} target="_blank" rel="noopener" class="case-cta">
-          <span class="heading-lg">Your problem could be next.</span>
-          <span class="caption">A short call, a straight answer on whether I can help.</span>
-          <span class="btn btn-primary">Book a call <span class="arrow" aria-hidden="true">→</span></span>
-        </a>
-      </div>
+      <CaseGrid
+        cta={{
+          title: 'Hiring for problems like these?',
+          caption: 'I’m open to full-stack and mobile engineering roles.',
+          label: 'Email me',
+          href: `mailto:${site.email}`,
+        }}
+      />
     </div>
   </section>
 
-  <section class="section section--soft" id="services">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">What I can take off your plate</span>
-        <h2 class="display-xl">The parts of an app that touch money.</h2>
-      </div>
-      <div class="service-grid">
-        {
-          services.map((s) => (
-            <article class="card">
-              <h3 class="heading-lg">{s.title}</h3>
-              <p class="service-body">{s.body}</p>
-              <div class="tag-row">
-                {s.tags.map((t) => (
-                  <span class="tag">{t}</span>
-                ))}
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="card card--cream principles">
-        <div class="principles-head">
-          <span class="eyebrow eyebrow--warm">How I work</span>
-          <h2 class="display-lg">Four rules I don’t break.</h2>
-        </div>
-        <ol class="principle-list">
-          {
-            principles.map((p, i) => (
-              <li>
-                <span class="principle-n tnum">0{i + 1}</span>
-                <div>
-                  <h3 class="heading-md">{p.title}</h3>
-                  <p>{p.body}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--soft" id="about">
-    <div class="container about">
-      <img src="/images/jon.jpg" alt="Jon Zaro" width="360" height="360" class="about-photo" loading="lazy" />
-      <div class="about-copy">
-        <span class="eyebrow">About</span>
-        <h2 class="display-lg">From intern to lead developer in under a year.</h2>
-        <p class="body-lg">
-          I finished V School’s full-stack JavaScript program in 2023 and joined Smash Creative as an intern that
-          August. By the following summer I was leading development on Burn by Cara Loren, and today I own its
-          architecture and release pipeline.
-        </p>
-        <p class="body-lg">
-          I also volunteer as a developer on a protocols app for the Lehi Fire Department, giving firefighters fast
-          access to procedures and pediatric dosing. Off the keyboard I’m a dad of three boys, a forager and a hiker,
-          which is where the mountains came from.
-        </p>
-        <div class="about-links">
-          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn →</a>
-          <a href={site.github} target="_blank" rel="noopener">GitHub →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Principles />
 
   <section class="section" id="projects">
     <div class="container">
@@ -286,206 +302,135 @@ const side = [
 </Base>
 
 <style>
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 56px;
-    align-items: start;
-  }
-  .hero-eyebrow {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 6px 12px;
-    border-radius: var(--r-pill);
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    font-weight: 400;
-  }
-  .hero-copy h1 {
-    color: var(--on-primary);
-    text-shadow: 0 1px 24px rgba(8, 40, 70, 0.25);
-  }
-  .hero-sub {
-    margin-top: 22px;
-    max-width: 560px;
-    font-size: 18px;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.92);
-  }
-  .hero-actions {
+  .hero-facts {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 32px;
+    gap: 8px 20px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.88);
   }
-  .hero-grid > * {
+  .hero-facts li::before {
+    content: '✓';
+    margin-right: 6px;
+    color: #9fe8c6;
+  }
+  .exp {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .exp > * {
     min-width: 0;
   }
-  .hero-log {
-    padding-top: 8px;
-  }
-
-  .proof {
-    padding: 48px 0 8px;
-  }
-  .proof-title {
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 12px;
-  }
-  .proof-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .proof-card {
+  .exp-side {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    height: 100%;
-    padding: 22px 22px 20px;
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-lg);
-    background: var(--canvas);
-    color: var(--ink);
-    transition:
-      border-color 0.15s ease,
-      box-shadow 0.15s ease;
+    gap: 18px;
+    position: sticky;
+    top: 96px;
   }
-  .proof-card:hover {
-    color: var(--ink);
-    border-color: var(--primary-subdued);
-    box-shadow: var(--shadow-2);
-  }
-  .proof-topic {
-    font-size: 12px;
-    color: var(--primary);
-    font-weight: 500;
-  }
-  .proof-value {
-    font-size: 32px;
-    letter-spacing: -0.8px;
-    line-height: 1.1;
-    color: var(--brand-dark-900);
-  }
-  .proof-headline {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.35;
-  }
-  .proof-detail {
-    flex: 1;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-secondary);
-  }
-  .proof-link {
-    margin-top: 6px;
-    font-size: 13px;
-    color: var(--primary);
-  }
-
-  .case-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .case-cta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 28px;
-    border-radius: var(--r-lg);
-    border: 1px dashed var(--primary-subdued);
-    background: linear-gradient(135deg, #f4f3ff 0%, var(--canvas-soft) 100%);
-    color: var(--ink);
-  }
-  .case-cta:hover {
-    color: var(--ink);
-  }
-  .case-cta .btn {
-    margin-top: 8px;
-  }
-
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .service-grid .card {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .service-body {
-    color: var(--ink-secondary);
-    flex: 1;
-  }
-
-  .principles {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 48px;
-    padding: 56px;
-  }
-  .eyebrow--warm {
-    color: #9b6829;
-  }
-  .principle-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 40px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .principle-list li {
-    display: flex;
-    gap: 16px;
-  }
-  .principle-n {
-    color: #9b6829;
-    font-size: 14px;
-    padding-top: 3px;
-  }
-  .principle-list p {
-    margin-top: 6px;
-    color: var(--ink-secondary);
-    font-size: 15px;
-  }
-
-  .about {
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .about-photo {
+  .exp-photo {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: var(--r-xl);
     box-shadow: var(--shadow-2);
   }
-  .about-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .exp-bio {
+    color: var(--ink-secondary);
+    font-size: 15px;
   }
-  .about-copy .eyebrow {
-    margin-bottom: 0;
-  }
-  .about-links {
+  .exp-links {
     display: flex;
     gap: 24px;
     font-weight: 400;
+  }
+  .timeline {
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .timeline > li {
+    position: relative;
+    padding: 0 0 28px 24px;
+    border-left: 1px solid var(--hairline);
+  }
+  .timeline > li:last-child {
+    padding-bottom: 0;
+  }
+  .timeline > li::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 4px var(--canvas);
+  }
+  .role-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4px 16px;
+    margin-bottom: 8px;
+  }
+  .role-org {
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  .timeline p {
+    color: var(--ink-secondary);
+  }
+  .role-points {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    color: var(--ink-secondary);
+    font-size: 15px;
+  }
+  .role-points li + li {
+    margin-top: 4px;
+  }
+
+  .skills {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--hairline);
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 32px;
+    margin: 24px 0 0;
+  }
+  .skills-grid dd {
+    margin: 10px 0 0;
+  }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .ai-grid .card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ai-where {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+  .ai-body {
+    color: var(--ink-secondary);
+    flex: 1;
   }
 
   .side-grid {
@@ -532,58 +477,42 @@ const side = [
   }
 
   @media (max-width: 1023px) {
-    .hero-grid {
+    .exp {
       grid-template-columns: 1fr;
       gap: 40px;
     }
-    .hero-log {
-      max-width: 560px;
+    .exp-side {
+      position: static;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      gap: 24px;
     }
-    .proof-grid {
+    .exp-photo {
+      grid-row: span 2;
+    }
+    .skills-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
-    .principles {
-      grid-template-columns: 1fr;
-      padding: 40px;
     }
     .side-grid {
       grid-template-columns: 1fr 1fr;
     }
-    .about {
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-    }
   }
   @media (max-width: 767px) {
-    .hero-sub {
-      font-size: 16px;
+    .hero-facts {
+      flex-direction: column;
     }
-    .hero-actions .btn {
-      flex: 1 1 auto;
-      justify-content: center;
-    }
-    .proof-grid {
+    .exp-side {
       grid-template-columns: 1fr;
-      gap: 12px;
     }
-    .proof-value {
-      font-size: 28px;
+    .exp-photo {
+      max-width: 220px;
+      grid-row: auto;
     }
-    .case-grid,
-    .service-grid,
-    .principle-list,
+    .skills-grid,
+    .ai-grid,
     .side-grid {
       grid-template-columns: 1fr;
-    }
-    .principles {
-      padding: 28px 22px;
-      gap: 28px;
-    }
-    .about {
-      grid-template-columns: 1fr;
-    }
-    .about-photo {
-      max-width: 260px;
     }
   }
 </style>

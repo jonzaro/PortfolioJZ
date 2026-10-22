@@ -323,3 +323,64 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Page hero: copy on the left, a mockup card on the right (home and consulting). */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  font-weight: 400;
+}
+.hero-copy h1 {
+  color: var(--on-primary);
+  text-shadow: 0 1px 24px rgba(8, 40, 70, 0.25);
+}
+.hero-sub {
+  margin-top: 22px;
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.hero-grid > * {
+  min-width: 0;
+}
+.hero-log {
+  padding-top: 8px;
+}
+
+@media (max-width: 1023px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-log {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-sub {
+    font-size: 16px;
+  }
+  .hero-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
