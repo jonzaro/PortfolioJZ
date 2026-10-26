@@ -14,6 +14,10 @@ stats:
     label: Duplicate web-checkout subscription pairs
   - value: 0
     label: Errors across every production merge
+quote:
+  text: Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.
+  name: Michael Zaro
+  role: Strategy and client relations, Burn
 panel:
   file: webhooks/subscription-takeover.ts · simplified
   lines:
@@ -37,6 +41,8 @@ panel:
 Burn sells subscriptions on iOS, Android and the web, and the subscription table drives everything from paywall access to the team's growth numbers. An earlier migration (mine) had backfilled historical rows with placeholder IDs. Live webhooks from the billing provider looked rows up by the real ID, never found the backfilled one, and created a fresh row on every event. Separately, each web checkout fired two webhooks that raced each other into two rows.
 
 Nothing crashed. The numbers just got a little more wrong every day.
+
+This is a different problem from the [Zapier replacement](/work/zapier-to-webhooks/). That project moved signup and payment data into our own API and retired a stale `paid` flag. This one came a month later: bad rows that had already reached the subscription table, which I had to find, merge and repair in production without losing history.
 
 ## What I did
 

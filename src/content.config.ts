@@ -23,6 +23,7 @@ const work = defineCollection({
       .array(z.object({ value: z.coerce.string(), label: z.string() }))
       .max(3)
       .default([]),
+    quote: z.object({ text: z.string(), name: z.string(), role: z.string() }).optional(),
     panel: z.object({
       file: z.string(),
       lines: z.array(line),
