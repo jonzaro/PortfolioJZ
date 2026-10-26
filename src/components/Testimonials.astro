@@ -1,6 +1,4 @@
 ---
-import { site } from '../site';
-
 // Verbatim, from Michael directly. Also shown on the subscription-data-repair case study.
 const featured = {
   text: 'Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.',
@@ -33,12 +31,7 @@ const quotes = [
 
 <section class="quotes" aria-labelledby="quotes-title">
   <div class="container">
-    <div class="quotes-head">
-      <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
-      <a href={`${site.linkedin}details/recommendations/`} target="_blank" rel="noopener" class="quotes-link">
-        Full recommendations on LinkedIn <span class="arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
+    <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
     <figure class="quote quote--featured">
       <blockquote>
         <p>“{featured.text}”</p>
@@ -74,21 +67,11 @@ const quotes = [
   .quotes {
     padding: 40px 0 8px;
   }
-  .quotes-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px 24px;
-    margin-bottom: 16px;
-  }
   .quotes-title {
+    margin-bottom: 16px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 12px;
-  }
-  .quotes-link {
-    font-size: 13px;
   }
   .quotes-grid {
     display: grid;
