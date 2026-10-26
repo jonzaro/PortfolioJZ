@@ -1,11 +1,4 @@
 ---
-// Verbatim, from Michael directly. Also shown on the subscription-data-repair case study.
-const featured = {
-  text: 'Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.',
-  name: 'Michael Z.',
-  relation: 'Strategy and client relations, Burn',
-};
-
 // Verbatim excerpts from LinkedIn recommendations; "…" marks a cut. Don't reword them.
 const quotes = [
   {
@@ -32,15 +25,6 @@ const quotes = [
 <section class="quotes" aria-labelledby="quotes-title">
   <div class="container">
     <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
-    <figure class="quote quote--featured">
-      <blockquote>
-        <p>“{featured.text}”</p>
-      </blockquote>
-      <figcaption>
-        <span class="quote-name">{featured.name}</span>
-        <span class="quote-meta">{featured.relation}</span>
-      </figcaption>
-    </figure>
     <ul class="quotes-grid">
       {
         quotes.map((q) => (
@@ -108,24 +92,6 @@ const quotes = [
     padding-top: 14px;
     border-top: 1px solid var(--hairline);
   }
-  .quote--featured {
-    height: auto;
-    margin-bottom: 20px;
-    padding: 32px 36px 28px;
-    background: var(--canvas-cream);
-    border-color: transparent;
-  }
-  .quote--featured blockquote p {
-    max-width: 880px;
-    font-size: 22px;
-    line-height: 1.4;
-    letter-spacing: -0.22px;
-    font-weight: 300;
-    color: var(--ink);
-  }
-  .quote--featured figcaption {
-    border-top-color: rgba(155, 104, 41, 0.25);
-  }
   .quote-name {
     font-size: 15px;
     font-weight: 500;
@@ -139,15 +105,6 @@ const quotes = [
     .quotes-grid {
       grid-template-columns: 1fr;
       gap: 12px;
-    }
-  }
-  @media (max-width: 767px) {
-    .quote--featured {
-      margin-bottom: 12px;
-      padding: 24px 22px 22px;
-    }
-    .quote--featured blockquote p {
-      font-size: 19px;
     }
   }
 </style>

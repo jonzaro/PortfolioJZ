@@ -16,8 +16,8 @@ stats:
     label: Errors across every production merge
 quote:
   text: Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.
-  name: Michael Z.
-  role: Strategy and client relations, Burn
+  name: Michael Zaro
+  role: Co-founder of Burn, and my brother
 panel:
   file: webhooks/subscription-takeover.ts · simplified
   lines:
