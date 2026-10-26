@@ -37,6 +37,8 @@ Every signup, payment and cancellation on Burn's web checkout went through a cha
 
 The original sprint plan was to replace it with a third database and webhooks hosted on the WordPress site.
 
+This case study is about replacing that broken pipeline. The [subscription data repair](/work/subscription-data-repair/) came later and is a separate problem: duplicate rows inside the new subscription table, caused by a backfill, and repaired in production.
+
 ## What I did
 
 **Reworked the plan before writing code.** We already ran a Postgres database and an API server with monitoring, tests and a deploy pipeline. Adding a second database and putting revenue-critical webhooks on WordPress would have meant two more things to secure and keep alive. I moved the work into the API.

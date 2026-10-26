@@ -38,6 +38,8 @@ Burn sells subscriptions on iOS, Android and the web, and the subscription table
 
 Nothing crashed. The numbers just got a little more wrong every day.
 
+This is a different problem from the [Zapier replacement](/work/zapier-to-webhooks/). That project moved signup and payment data into our own API and retired a stale `paid` flag. This one came a month later: bad rows that had already reached the subscription table, which I had to find, merge and repair in production without losing history.
+
 ## What I did
 
 **Contained it at the source first.** I changed the webhook path so it takes over the orphaned row with a single conditional update. The database decides who wins the race; the code doesn't have to. I wrote a probe script to reproduce the race against the real code path and checked that every new test failed against the broken version before I trusted it.

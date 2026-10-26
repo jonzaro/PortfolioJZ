@@ -1,0 +1,127 @@
+---
+import { site } from '../site';
+
+// Verbatim excerpts from LinkedIn recommendations; "…" marks a cut. Don't reword them.
+const quotes = [
+  {
+    text: 'He picks up complex systems and tools incredibly quickly — and doesn’t just learn them, he masters them and starts making an impact right away. … Our team runs more efficiently and has more time to focus on revenue growth because of his contributions.',
+    name: 'Victoria Lynn Cotnoir',
+    relation: 'Worked with Jon on another team at Smash Creative',
+    date: 'May 2025',
+  },
+  {
+    text: 'He consistently took projects from concept to deployment, seamlessly handling both frontend and backend tasks. His expertise in AI tooling, particularly integrating custom GPT models into apps, made a huge impact on project efficiency and functionality.',
+    name: 'Steve Rodriguez',
+    relation: 'Managed Jon directly at Smash Creative',
+    date: 'Mar 2025',
+  },
+  {
+    text: 'Jon is a strong engineer with a unique ability to think outside the box. While working with Jon, he was crucial in business automations utilizing various tools including AI. These automations led to saved time and efficiency as a company.',
+    name: 'Kevin Measom',
+    relation: 'Managed Jon directly at Smash Creative',
+    date: 'Oct 2024',
+  },
+];
+---
+
+<section class="quotes" aria-labelledby="quotes-title">
+  <div class="container">
+    <div class="quotes-head">
+      <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
+      <a href={`${site.linkedin}details/recommendations/`} target="_blank" rel="noopener" class="quotes-link">
+        Full recommendations on LinkedIn <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+    <ul class="quotes-grid">
+      {
+        quotes.map((q) => (
+          <li>
+            <figure class="quote">
+              <blockquote>
+                <p>“{q.text}”</p>
+              </blockquote>
+              <figcaption>
+                <span class="quote-name">{q.name}</span>
+                <span class="quote-meta">
+                  {q.relation} · <span class="tnum">{q.date}</span>
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .quotes {
+    padding: 40px 0 8px;
+  }
+  .quotes-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px 24px;
+    margin-bottom: 16px;
+  }
+  .quotes-title {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+  }
+  .quotes-link {
+    font-size: 13px;
+  }
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .quote {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: 100%;
+    margin: 0;
+    padding: 24px 24px 22px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    background: var(--canvas-soft);
+  }
+  .quote blockquote {
+    flex: 1;
+    margin: 0;
+  }
+  .quote blockquote p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-secondary);
+  }
+  .quote figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 14px;
+    border-top: 1px solid var(--hairline);
+  }
+  .quote-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .quote-meta {
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+  @media (max-width: 1023px) {
+    .quotes-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>
