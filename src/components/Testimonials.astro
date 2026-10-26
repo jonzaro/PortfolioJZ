@@ -1,10 +1,8 @@
 ---
-import { site } from '../site';
-
 // Verbatim, from Michael directly. Also shown on the subscription-data-repair case study.
 const featured = {
   text: 'Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.',
-  name: 'Michael Zaro',
+  name: 'Michael Z.',
   relation: 'Strategy and client relations, Burn',
 };
 
@@ -12,19 +10,19 @@ const featured = {
 const quotes = [
   {
     text: 'He picks up complex systems and tools incredibly quickly — and doesn’t just learn them, he masters them and starts making an impact right away. … Our team runs more efficiently and has more time to focus on revenue growth because of his contributions.',
-    name: 'Victoria Lynn Cotnoir',
+    name: 'Victoria Lynn C.',
     relation: 'Worked with Jon on another team at Smash Creative',
     date: 'May 2025',
   },
   {
     text: 'He consistently took projects from concept to deployment, seamlessly handling both frontend and backend tasks. His expertise in AI tooling, particularly integrating custom GPT models into apps, made a huge impact on project efficiency and functionality.',
-    name: 'Steve Rodriguez',
+    name: 'Steve R.',
     relation: 'Managed Jon directly at Smash Creative',
     date: 'Mar 2025',
   },
   {
     text: 'Jon is a strong engineer with a unique ability to think outside the box. While working with Jon, he was crucial in business automations utilizing various tools including AI. These automations led to saved time and efficiency as a company.',
-    name: 'Kevin Measom',
+    name: 'Kevin M.',
     relation: 'Managed Jon directly at Smash Creative',
     date: 'Oct 2024',
   },
@@ -33,12 +31,7 @@ const quotes = [
 
 <section class="quotes" aria-labelledby="quotes-title">
   <div class="container">
-    <div class="quotes-head">
-      <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
-      <a href={`${site.linkedin}details/recommendations/`} target="_blank" rel="noopener" class="quotes-link">
-        Full recommendations on LinkedIn <span class="arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
+    <p class="quotes-title caption" id="quotes-title">From the people I’ve worked with</p>
     <figure class="quote quote--featured">
       <blockquote>
         <p>“{featured.text}”</p>
@@ -74,21 +67,11 @@ const quotes = [
   .quotes {
     padding: 40px 0 8px;
   }
-  .quotes-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px 24px;
-    margin-bottom: 16px;
-  }
   .quotes-title {
+    margin-bottom: 16px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 12px;
-  }
-  .quotes-link {
-    font-size: 13px;
   }
   .quotes-grid {
     display: grid;
