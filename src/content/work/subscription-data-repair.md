@@ -14,6 +14,10 @@ stats:
     label: Duplicate web-checkout subscription pairs
   - value: 0
     label: Errors across every production merge
+quote:
+  text: Jon’s ability to see the big picture led him to identify and architect and solve a real subscription reporting error. Having trust in our data being accurate helps us steer the boat.
+  name: Michael Zaro
+  role: Strategy and client relations, Burn
 panel:
   file: webhooks/subscription-takeover.ts · simplified
   lines:

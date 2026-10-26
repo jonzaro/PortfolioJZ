@@ -82,6 +82,19 @@ const d = entry.data;
       <div class="prose">
         <Content />
       </div>
+      {
+        d.quote && (
+          <figure class="case-quote">
+            <blockquote>
+              <p>“{d.quote.text}”</p>
+            </blockquote>
+            <figcaption>
+              <span class="case-quote-name">{d.quote.name}</span>
+              <span class="caption">{d.quote.role}</span>
+            </figcaption>
+          </figure>
+        )
+      }
     </div>
   </article>
 
@@ -174,6 +187,33 @@ const d = entry.data;
 
   .stats {
     padding: 56px 0 0;
+  }
+
+  .case-quote {
+    max-width: 720px;
+    margin: 56px 0 0;
+    padding: 28px 32px;
+    border-radius: var(--r-lg);
+    background: var(--canvas-cream);
+  }
+  .case-quote blockquote {
+    margin: 0;
+  }
+  .case-quote blockquote p {
+    font-size: 20px;
+    line-height: 1.45;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    color: var(--ink);
+  }
+  .case-quote figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 16px;
+  }
+  .case-quote-name {
+    font-weight: 500;
   }
   .stats-grid {
     display: grid;
